@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Cotton Oil Mill Calculator</title>
+
+
+<style>
+
+
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+padding:20px;
+}
+
+
+.container{
+max-width:420px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 15px rgba(0,0,0,0.15);
+}
+
+
+h2{
+text-align:center;
+}
+
+
+label{
+font-weight:bold;
+font-size:14px;
+}
+
+
+input{
+width:100%;
+padding:12px;
+margin-top:5px;
+margin-bottom:15px;
+font-size:16px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+
+button{
+width:100%;
+padding:14px;
+font-size:16px;
+background:#2e7d32;
+color:white;
+border:none;
+border-radius:8px;
+}
+
+
+.result{
+margin-top:20px;
+background:#f7f9fb;
+padding:15px;
+border-radius:10px;
+font-size:16px;
+}
+
+
+.margin{
+font-size:22px;
+font-weight:bold;
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h2>Cotton Oil Mill Tool</h2>
+
+
+<label>Seed Price (₹/Quintal)</label>
+<input id="seedPrice" type="number">
+
+
+<label>Oil Price (₹/kg)</label>
+<input id="oilPrice" type="number">
+
+
+<label>Cake Price (₹/kg)</label>
+<input id="cakePrice" type="number">
+
+
+<label>Oil Recovery (%)</label>
+<input id="oilRec" type="number" value="9">
+
+
+<label>Cake Recovery (%)</label>
+<input id="cakeRec" type="number" value="86">
+
+
+<label>Processing Cost (₹/Quintal)</label>
+<input id="cost" type="number" value="200">
+
+
+<button onclick="calc()">Calculate</button>
+
+
+<div id="result" class="result"></div>
+
+
+</div>
+
+
+<script>
+
+
+function calc(){
+
+
+let seed=parseFloat(seedPrice.value)
+let oil=parseFloat(oilPrice.value)
+let cake=parseFloat(cakePrice.value)
+let oilRec=parseFloat(oilRec.value)/100
+let cakeRec=parseFloat(cakeRec.value)/100
+let cost=parseFloat(cost.value)
+
+
+let oilRev = oil*oilRec*100
+let cakeRev = cake*cakeRec*100
+
+
+let total = oilRev + cakeRev
+
+
+let margin = total - seed - cost
+
+
+let breakeven = total - cost
+
+
+document.getElementById("result").innerHTML=
+
+
+"Oil Revenue: ₹ "+oilRev.toFixed(0)+"<br>"+
+"Cake Revenue: ₹ "+cakeRev.toFixed(0)+"<br>"+
+"Total Revenue: ₹ "+total.toFixed(0)+"<br><br>"+
+
+
+"Break-even Seed Price: ₹ "+breakeven.toFixed(0)+"<br><br>"+
+
+
+"<div class='margin'>Crushing Margin: ₹ "+margin.toFixed(0)+"</div>"
+
+
+}
+
+
+</script>
+
+
+</body>
+</html>
